@@ -24,6 +24,15 @@ module.exports = function(callback) {
 		});
 };
 
+module.exports.url = function(tweet) {
+	return 'https://twitter.com/' + tweet.user.screen_name +
+		'/status/' + tweet.id_str;
+};
+module.exports.text = function(tweet) {
+	return 'RT @' + tweet.retweeted_status.user.screen_name + ': ' +
+		tweet.retweeted_status.text;
+};
+
 if (!module.parent)
 	module.exports(function(tweets, payload, user) {
 		console.log(tweets[tweets.length - 1]);
